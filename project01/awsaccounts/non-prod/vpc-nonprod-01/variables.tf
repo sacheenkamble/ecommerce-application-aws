@@ -1,7 +1,9 @@
-
+##Define all variables for backend, VPC, Security Group, Prefix List and Network ACL modules
 //////////////////////////////////////////////////////////////////////////////
-///Define variables for AWS provider and S3 backend configuration ////////////////
 
+
+///Define variables for AWS provider and S3 backend configuration ////////////////
+//////////////////////////////////////////////////////////////////////////////////
 #Define AWS region
 variable "aws_region" {
   type        = string
