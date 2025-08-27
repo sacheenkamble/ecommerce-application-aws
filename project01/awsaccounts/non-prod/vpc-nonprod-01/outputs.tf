@@ -18,3 +18,13 @@ output "private_subnet_az2_ids" {
 output "internet_gateway_id" {
   value = module.vpc.internet_gateway_id
 }
+
+# Output security group ID
+output "security_group_id" {
+  value = module.vpc_sg.security_group_id
+}
+
+# Output the prefix list name
+output "prefix_list_name" {
+  value = module.prefix_list.prefix_list_name
+}
