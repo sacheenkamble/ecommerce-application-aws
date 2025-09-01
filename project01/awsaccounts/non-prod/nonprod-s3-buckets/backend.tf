@@ -19,7 +19,7 @@ terraform {
 
 #Define AWS Provider configurations
 provider "aws" {
-  region = var.aws_region
+  region = var.region
   assume_role {
     role_arn = var.account_iam_role
   }
