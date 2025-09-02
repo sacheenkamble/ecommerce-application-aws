@@ -6,7 +6,9 @@ on:
          - main
      pull_request:
        branches:
-         - main
+         - main   #Target 'main' branch for PRs
+       types:
+          - closed   # To run checks on PR close (for merge)
 
 
      workflow_dispatch:   ## When this workflow is manually triggered
@@ -14,7 +16,6 @@ on:
 ## Allow this workflow to read all contents in this Git repo
 permissions:
   contents: read
-
 
 jobs:
   terraform:
@@ -77,5 +78,5 @@ jobs:
       run: terraform plan -out=tfplan
 
     - name: 'Terraform Apply'
-      if: github.ref == 'refs/heads/main' && ( github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true) )
+      if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
       run: terraform apply -auto-approve tfplan
