@@ -6,10 +6,14 @@ on:
      push:
        branches:
          - main
+       paths:
+          - "project01/awsaccounts/**"
 
      pull_request:
        branches:
          - main   #Target 'main' branch for PRs
+       paths:
+          - "project01/awsaccounts/**"
        types:
           - closed   # To run checks on PR close (for merge)
 
@@ -26,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      #WORKING_DIR: "project01/awsaccounts/**"  #Adjust path as necessary
+      WORKING_DIR: "project01/awsaccounts/**"  #Adjust path as necessary
       AWS_REGION: 'us-east-1'
       TF_VERSION: '1.4.0'
       TFLINT_VERSION: '0.46.1'  # Updated to a more recent version
@@ -62,7 +66,7 @@ jobs:
         tfsec --version
 
     - name: Terraform Fmt
-      working-directory: "./project01/awsaccounts/**"
+      working-directory: ${{env.WORKING_DIR}}
       id: fmt
       run: terraform fmt -recursive
       continue-on-error: true
@@ -71,20 +75,20 @@ jobs:
     - name: Terraform init
       id: init
       run: terraform init
-      working-directory: "./project01/awsaccounts/**"
+      working-directory: ${{env.WORKING_DIR}}
         # env:
         #   TF_CLI_ARGS_init: "-backend-config=role_arn=arn:aws:iam::99999999:role/my-github-actions-role -upgrade -reconfigure"
         #   TF_VAR_assume_role: "my-github-actions-role"
 
     - name: Terraform validate
-      working-directory: "./project01/awsaccounts/**"
+      working-directory: ${{env.WORKING_DIR}}
       id: validate
       run: terraform validate
 
     - name: Terraform plan
       id: plan
       run: terraform plan -no-color
-      working-directory: "./project01/awsaccounts/**"
+      working-directory: ${{env.WORKING_DIR}}
         # env:
         #   TF_VAR_assume_role: "my-github-actions-role"
 
@@ -100,5 +104,5 @@ jobs:
 
     - name: 'Terraform Apply'
       if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-      working-directory: "./project01/awsaccounts/**"
+      working-directory: ${{env.WORKING_DIR}}
       run: terraform apply -auto-approve
