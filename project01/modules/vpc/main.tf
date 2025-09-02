@@ -1,24 +1,24 @@
 
 # Create a VPC
 resource "aws_vpc" "main_vpc" {
-  cidr_block = var.vpc_cidr_01
+  cidr_block           = var.vpc_cidr_01
   enable_dns_hostnames = true
   enable_dns_support   = true
-  
 
-    tags = {
-        Environment = var.environment
-        Name        = var.vpc_name
-        Project     = var.project
-    }
+
+  tags = {
+    Environment = var.environment
+    Name        = var.vpc_name
+    Project     = var.project
+  }
 }
 
 # Create public subnets (one per selected AZ)
 resource "aws_subnet" "public_subnet" {
-  count             = 2 # For two Availability Zones
-  vpc_id            = aws_vpc.main_vpc.id
-  cidr_block        = cidrsubnet(var.vpc_cidr_01, 8, count.index) # 8 new bits for /24 subnets from a /16 VPC
-  availability_zone = data.aws_availability_zones.available.names[count.index]
+  count                   = 2 # For two Availability Zones
+  vpc_id                  = aws_vpc.main_vpc.id
+  cidr_block              = cidrsubnet(var.vpc_cidr_01, 8, count.index) # 8 new bits for /24 subnets from a /16 VPC
+  availability_zone       = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = true
 
   tags = {
@@ -30,7 +30,7 @@ resource "aws_subnet" "public_subnet" {
 resource "aws_subnet" "private_subnet_az1" {
   count             = 2 # Two private subnets in the first AZ
   vpc_id            = aws_vpc.main_vpc.id
-  cidr_block        = cidrsubnet(var.vpc_cidr_01, 8, count.index + 2)  # Example CIDR blocks, adjusting offset
+  cidr_block        = cidrsubnet(var.vpc_cidr_01, 8, count.index + 2) # Example CIDR blocks, adjusting offset
   availability_zone = data.aws_availability_zones.available.names[0]
 
   tags = {

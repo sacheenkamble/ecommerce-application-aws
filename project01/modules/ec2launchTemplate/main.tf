@@ -11,26 +11,26 @@ resource "aws_launch_template" "example" {
   sudo apt-get install -y apache2
   sudo systemctl start apache2
   EOF
-  )                             #Base64 encoded user data script
-  key_name      = var.key_name
+  ) #Base64 encoded user data script
+  key_name               = var.key_name
   vpc_security_group_ids = [var.security_group_id]
 
   iam_instance_profile {
-      name = var.iam_instance_profile_name
-    }
+    name = var.iam_instance_profile_name
+  }
 
   metadata_options {
-      http_endpoint = "enabled"  #Enable IMDSv2
-      http_tokens = "required"  #Enforce IMDSv2
-      http_put_response_hop_limit = 1
-    }
+    http_endpoint               = "enabled"  #Enable IMDSv2
+    http_tokens                 = "required" #Enforce IMDSv2
+    http_put_response_hop_limit = 1
+  }
 
   tag_specifications {
-      resource_type = "instance"
-      tags = var.tags
-    }
+    resource_type = "instance"
+    tags          = var.tags
+  }
   lifecycle {
-      create_before_destroy = true
-    }
+    create_before_destroy = true
+  }
 
 }

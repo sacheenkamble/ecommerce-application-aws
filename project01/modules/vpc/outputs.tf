@@ -13,7 +13,7 @@ output "private_subnet_az1_ids" {
 }
 output "private_subnet_az2_ids" {
   value = aws_subnet.private_subnet_az2[*].id
-} 
+}
 
 # Output the Internet Gateway ID
 output "internet_gateway_id" {

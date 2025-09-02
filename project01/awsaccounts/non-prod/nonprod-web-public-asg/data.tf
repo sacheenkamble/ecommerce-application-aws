@@ -9,9 +9,9 @@ data "aws_vpc" "nonprod_vpc" {
 
 #Get Subnet IDs from the non-prod VPC module
 data "aws_subnets" "publicsubnets" {
-    filter {
-        name   = "tag:Name"
-        values = ["PublicSubnet-*"]
+  filter {
+    name   = "tag:Name"
+    values = ["PublicSubnet-*"]
   }
 }
 

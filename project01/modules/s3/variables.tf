@@ -15,14 +15,14 @@ variable "region" {
 variable "bucket_names" {
   description = "The name of the S3 bucket"
   type        = list(string)
-  default     = [ "my-nonprod-ecommerce-bucket-1", "my-nonprod-ecommerce-bucket-2" ]
+  default     = ["my-nonprod-ecommerce-bucket-1", "my-nonprod-ecommerce-bucket-2"]
 }
 
 #Define tags variable
 variable "tags" {
   description = "A map of tags to assign to the bucket"
   type        = map(string)
-  default     = {
+  default = {
     Environment = "non-prod"
     Project     = "ecommerce"
   }

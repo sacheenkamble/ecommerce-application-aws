@@ -10,5 +10,5 @@ variable "vpc_name" {
 variable "vpc_id" {
   description = "The ID of the VPC where the Network ACL will be created"
   type        = string
-  
+
 }
