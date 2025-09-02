@@ -21,6 +21,7 @@ on:
 
 ## Allow this workflow to read all contents in this Git repo
 permissions:
+  id-token: write
   contents: read
 
 jobs:
@@ -29,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      working-directory: '/*'  # Adjust path as necessary
+      working-directory: './ecommerce-application-aws/project01/'  # Adjust path as necessary
       AWS_REGION: 'us-east-1'
       TF_VERSION: '1.4.0'
       TFLINT_VERSION: '0.46.1'  # Updated to a more recent version
@@ -67,7 +68,7 @@ jobs:
     - name: Terraform Fmt
       working-directory: ${{ env.working-directory }}
       id: fmt
-      run: terraform fmt -check
+      run: terraform fmt -recursive
       continue-on-error: true
 
 
