@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      working-directory: "/**"   #Adjust path as necessary
+      working-directory: "main/project01/awsaccounts/**"   #Adjust path as necessary
       AWS_REGION: 'us-east-1'
       TF_VERSION: '1.4.0'
       TFLINT_VERSION: '0.46.1'  # Updated to a more recent version
