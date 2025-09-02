@@ -10,8 +10,6 @@ on:
      pull_request:
        branches:
          - main   #Target 'main' branch for PRs
-       paths:
-         - 'project01/awsaccounts/**'   # Only run for changes in the project01 directory
        types:
           - closed   # To run checks on PR close (for merge)
 
@@ -30,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      working-directory: './ecommerce-application-aws/project01/'  # Adjust path as necessary
+      working-directory: 'project01/awsaccounts/'  # Adjust path as necessary
       AWS_REGION: 'us-east-1'
       TF_VERSION: '1.4.0'
       TFLINT_VERSION: '0.46.1'  # Updated to a more recent version
