@@ -30,7 +30,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: "./terraform/"
+        working-directory: "/project01"
 
     env:
       working-directory: "/**"   #Adjust path as necessary
