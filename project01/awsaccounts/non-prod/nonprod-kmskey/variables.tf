@@ -24,5 +24,5 @@ variable "account_iam_role" {
 variable "kms_key_name" {
   description = "The name of the KMS key"
   type        = string
-  default     = "nonprod-kms-key"
+  default     = "nonprod-kms-key01"
 }
