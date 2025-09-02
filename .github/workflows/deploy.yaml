@@ -26,12 +26,7 @@ jobs:
   terraform:
     name: 'Terraform Lint, Security Check, and Deploy'
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        shell: bash
-        working-directory: "/project01"
-
+    
     env:
       working-directory: "/**"   #Adjust path as necessary
       AWS_REGION: 'us-east-1'
