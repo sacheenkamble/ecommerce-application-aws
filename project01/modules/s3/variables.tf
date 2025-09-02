@@ -1,11 +1,11 @@
 #Define AWS region variable
-variable "aws_region" {
+variable "region" {
   description = "The AWS region where the S3 bucket will be created"
   type        = string
   default     = "us-east-1"
 
   validation {
-    condition     = contains(["us-east-1", "us-west-1", "us-west-2"], var.aws_region)
+    condition     = contains(["us-east-1", "us-west-1", "us-west-2"], var.region)
     error_message = "Invalid AWS region. Allowed values are us-east-1, us-west-1, us-west-2 only"
   }
 

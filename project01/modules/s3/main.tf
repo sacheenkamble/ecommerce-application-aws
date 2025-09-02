@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "example" {
   for_each = toset(var.bucket_names)
   
   bucket = each.key    #example-bucket-12345
-  region = var.aws_region
+  region = var.region
   tags = var.tags
 
 

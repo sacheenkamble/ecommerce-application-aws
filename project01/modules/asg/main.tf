@@ -4,11 +4,25 @@ resource "aws_launch_template" "example" {
   name_prefix   = var.launch_template_name
   image_id      = var.ami_id
   instance_type = var.instance_type #t2.micro
+  user_data = base64encode(<<EOF
+   #!/bin/bash
+   echo "Hello from user data!" > /tmp/user_data_output.txt
+  sudo apt-get update -y
+  sudo apt-get install -y apache2
+  sudo systemctl start apache2
+  EOF
+  )                             #Base64 encoded user data script
   key_name      = var.key_name
   vpc_security_group_ids = [var.security_group_id]
 
   iam_instance_profile {
       name = var.iam_instance_profile_name
+    }
+
+  metadata_options {
+      http_endpoint = "enabled"  #Enable IMDSv2
+      http_tokens = "required"  #Enforce IMDSv2
+      http_put_response_hop_limit = 1
     }
 
   tag_specifications {
@@ -32,10 +46,20 @@ resource "aws_autoscaling_group" "example" {
   }
 
   vpc_zone_identifier = var.subnet_ids #list of subnet ids
+
+  #health_check_type = "elb" # Use ELB health checks
+  health_check_grace_period = 300 # Grace period for health checks
   
   lifecycle {
     create_before_destroy = true
   }
+
+  tag {
+    key                 = "Name"
+    value               = "example-asg-instance"
+    propagate_at_launch = true
+  }
+
 }
 
 #Define Auto Scaling Policy

@@ -1,17 +1,41 @@
 
-#Define variables for VPC id
-variable "vpc_id" {
-  description = "The ID of the VPC where the ALB will be deployed"
+///Define variables for AWS provider and S3 backend configuration ////////////////
+//////////////////////////////////////////////////////////////////////////////////
+#Define AWS region
+variable "region" {
   type        = string
+  description = "AWS region ID"
 }
 
-# Define variables for the ALB module
+#Define Account specific roles to assume for Terraform
+variable "account_iam_role" {
+  type = string
+}
+
+
+
+# VPC id
+#Data-source configured in main.tf to fetch VPC id
+
+# List of subnet IDs for the ALB
+#Data-source configured in main.tf to fetch public subnets of the VPC
+
+# S3 bucket for ALB access logs
+#Data-source configured in main.tf to fetch S3 bucket name for ALB access logs
+
+
+# Tags to assign to the ALB
+#Tags are defined in main.tf
+
+
+# Define name variable for the ALB name
 variable "alb_name" {
   description = "The name of the Application Load Balancer"
   type        = string
   default     = "nonprod-alb"
 }
 
+# Define if the ALB is internal or internet-facing
 variable "alb_internal" {
   description = "Boolean to specify if the ALB is internal"
   type        = bool
@@ -59,7 +83,7 @@ variable "tags" {
 variable "asg_name" {
   description = "The name of the Auto Scaling Group to attach to the ALB"
   type        = string
-  default = "nonprod-app-asg"
+  default     = "nonprod-app-asg"
 }
 
 
