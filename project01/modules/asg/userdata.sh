@@ -1,6 +1,6 @@
 #!/bin/bash
-apt-get update
-apt-get install -y apache2
-sed -i -e 's/80/8080/' /etc/apache2/ports.conf
-echo "Hello World" > /var/www/html/index.html
-systemctl restart apache2
+sudo yum update -y
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+echo "<h1>Hello from EC2 User Data!</h1>" | sudo tee /var/www/html/index.html

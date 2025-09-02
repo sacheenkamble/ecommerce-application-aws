@@ -18,12 +18,6 @@ variable "alb_internal" {
   default     = false
 }
 
-# Security group ID for the ALB
-variable "alb_security_group_id" {
-  description = "The security group ID to associate with the ALB"
-  type        = string
-  default = "value"
-}
 
 # List of subnet IDs for the ALB
 variable "alb_subnet_ids" {

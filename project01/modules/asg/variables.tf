@@ -79,10 +79,3 @@ variable "tags" {
 
   }
 }
-
-#Define variables for user data script
-variable "user_data_script" {
-  description = "Path to the user data script"
-  type        = string
-  default     = "./userdata.sh"
-}
