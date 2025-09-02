@@ -9,12 +9,12 @@ resource "aws_lb" "my_alb" {
 
   enable_deletion_protection = true
 
-  access_logs {
+/*   access_logs {
     bucket  = var.alb_access_log_bucket
     prefix  = var.alb_access_log_prefix
     enabled = true
   }
-    tags = var.tags
+    tags = var.tags */
 }
 
 # Create Security Group for ALB
@@ -68,7 +68,7 @@ resource "aws_lb_target_group" "my_target_group" {
 #Create Autoscaling attachment to link ALB target group with ASG
 resource "aws_autoscaling_attachment" "asg_attachment" {
   autoscaling_group_name = var.asg_name
-  elb = aws_lb.my_alb.id
+  lb_target_group_arn    = aws_lb_target_group.my_target_group.arn
 }
 
 

@@ -2,7 +2,7 @@
 ///Define variables for AWS provider and S3 backend configuration ////////////////
 //////////////////////////////////////////////////////////////////////////////////
 #Define AWS region variable
-variable "aws_region" {
+variable "region" {
   description = "The AWS region where the S3 bucket will be created"
   type        = string
   default     = "us-east-1"
