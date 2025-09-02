@@ -1,12 +1,20 @@
 name: Terraform CI/CD
 
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     branches:
-#       - main
+on:
+     push:
+       branches:
+         - main
+     pull_request:
+       branches:
+         - main
+
+
+     workflow_dispatch:   ## When this workflow is manually triggered
+
+## Allow this workflow to read all contents in this Git repo
+permissions:
+  contents: read
+
 
 jobs:
   terraform:
@@ -69,5 +77,5 @@ jobs:
       run: terraform plan -out=tfplan
 
     - name: 'Terraform Apply'
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/main' && ( github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged == true) )
       run: terraform apply -auto-approve tfplan
