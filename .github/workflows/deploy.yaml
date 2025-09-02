@@ -32,11 +32,6 @@ jobs:
       TFLINT_VERSION: '0.46.1'  # Updated to a more recent version
       TFSEC_VERSION: '1.28.1'   # Updated to a more recent version
 
-    defaults:
-      run:
-        shell: bash
-        working-directory: ${{ env.WORKING_DIR }}
-
     steps:
     - name: 'Checkout GitHub repository'
       uses: actions/checkout@v2
