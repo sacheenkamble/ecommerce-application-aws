@@ -30,10 +30,10 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: "./project01"
+        working-directory: "./terraform/"
 
     env:
-      working-directory: ""  # Adjust path as necessary
+      working-directory: "./terraform/project01/**"   #Adjust path as necessary
       AWS_REGION: 'us-east-1'
       TF_VERSION: '1.4.0'
       TFLINT_VERSION: '0.46.1'  # Updated to a more recent version
