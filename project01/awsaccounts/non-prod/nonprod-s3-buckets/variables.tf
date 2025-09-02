@@ -16,7 +16,7 @@ variable "region" {
 
 #Define Account specific roles to assume for Terraform
 variable "account_iam_role" {
-  type = string
+  type    = string
   default = "arn:aws:iam::621552110459:role/devops-terraform-role" ## Non-Production Account IAM role.
 }
 
@@ -24,7 +24,7 @@ variable "account_iam_role" {
 variable "bucket_names" {
   description = "The name of the S3 bucket"
   type        = list(string)
-  default     = [ "my-nonprod-ecommerce-bucket-1", "my-nonprod-ecommerce-bucket-2" ]
+  default     = ["my-nonprod-ecommerce-bucket-1", "my-nonprod-ecommerce-bucket-2"]
 }
 
 #Define tags variable

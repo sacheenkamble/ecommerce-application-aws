@@ -46,7 +46,7 @@ variable "alb_internal" {
 variable "alb_security_group_id" {
   description = "The security group ID to associate with the ALB"
   type        = string
-  default = "value"
+  default     = "value"
 }
 
 # List of subnet IDs for the ALB
@@ -67,13 +67,13 @@ variable "alb_access_log_prefix" {
   description = "The prefix for the ALB access log files"
   type        = string
   default     = "alb/nonprod-alb-logs"
-}   
+}
 
 # Tags to assign to the ALB
 variable "tags" {
   description = "A map of tags to assign to the ALB"
   type        = map(string)
-  default     = {
+  default = {
     Environment = "Non-prod"
     Project     = "ecommerce"
   }
@@ -89,8 +89,8 @@ variable "asg_name" {
 
 # Define variable for ALB certificate ARN
 variable "alb_certificate_arn" {
-    description = "The ACM certificate arn for ALB"
-    type = string
-    default = "arn"
-  
+  description = "The ACM certificate arn for ALB"
+  type        = string
+  default     = "arn"
+
 }

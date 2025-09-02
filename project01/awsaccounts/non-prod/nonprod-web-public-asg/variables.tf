@@ -27,7 +27,7 @@ variable "launch_template_name" {
 variable "ami_id" {
   description = "The AMI ID for the EC2 instances"
   type        = string
-  default = "ami-0a232144cf20a27a5"
+  default     = "ami-0a232144cf20a27a5"
 }
 
 #Define instance_type variable
@@ -41,7 +41,7 @@ variable "instance_type" {
 variable "key_name" {
   description = "The key pair name to access the EC2 instances"
   type        = string
-  default = "my-key-pair"
+  default     = "my-key-pair"
 }
 
 
@@ -49,14 +49,14 @@ variable "key_name" {
 variable "security_group_id" {
   description = "The security group ID to associate with the EC2 instances"
   type        = string
-  default = ""
+  default     = ""
 }
 
 # #Define subnet_ids variable
 variable "subnet_ids" {
   description = "The list of subnet IDs for the Auto Scaling group"
   type        = list(string)
-  default = [ "" ]
+  default     = [""]
 }
 
 #Define desired_capacity variable

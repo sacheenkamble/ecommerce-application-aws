@@ -2,13 +2,13 @@
 resource "aws_s3_bucket" "example" {
 
   for_each = toset(var.bucket_names)
-  
-  bucket = each.key    #example-bucket-12345
+
+  bucket = each.key #example-bucket-12345
   region = var.region
-  tags = var.tags
+  tags   = var.tags
 
 
-lifecycle {
+  lifecycle {
     prevent_destroy = true
   }
 

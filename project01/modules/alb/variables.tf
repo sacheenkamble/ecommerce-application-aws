@@ -37,13 +37,13 @@ variable "alb_access_log_prefix" {
   description = "The prefix for the ALB access log files"
   type        = string
   default     = "alb/nonprod-alb-logs"
-}   
+}
 
 # Tags to assign to the ALB
 variable "tags" {
   description = "A map of tags to assign to the ALB"
   type        = map(string)
-  default     = {
+  default = {
     Environment = "Non-prod"
     Project     = "ecommerce"
   }
@@ -53,14 +53,14 @@ variable "tags" {
 variable "asg_name" {
   description = "The name of the Auto Scaling Group to attach to the ALB"
   type        = string
-  default = "nonprod-app-asg"
+  default     = "nonprod-app-asg"
 }
 
 
 # Define variable for ALB certificate ARN
 variable "alb_certificate_arn" {
-    description = "The ACM certificate arn for ALB"
-    type = string
-    default = "arn"
-  
+  description = "The ACM certificate arn for ALB"
+  type        = string
+  default     = "arn"
+
 }
