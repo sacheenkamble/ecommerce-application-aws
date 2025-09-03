@@ -1,19 +1,12 @@
 
-#Get VPC ID from the non-prod VPC module
-data "aws_vpc" "nonprod_vpc" {
+# Get the private subnets from the non-prod VPC module
+data "aws_subnets" "privatesubnets" {
   filter {
     name   = "tag:Name"
-    values = ["vpc-nonprod-01"]
+    values = ["PrivateSubnet-*"]
   }
 }
 
-#Get Subnet IDs from the non-prod VPC module
-data "aws_subnets" "publicsubnets" {
-  filter {
-    name   = "tag:Name"
-    values = ["PublicSubnet-*"]
-  }
-}
 
 #Get Security Group ID from the non-prod security group module
 data "aws_security_group" "nonpprodvpc_sg" {

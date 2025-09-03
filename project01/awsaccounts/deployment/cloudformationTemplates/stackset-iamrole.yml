@@ -1,0 +1,21 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation template to create an IAM Role in a target AWS account
+
+Resources:
+  MyCloudFormationRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: "devops-terraform-role" # Specify your desired role name in target account
+      AssumeRolePolicyDocument:         # Add a Trust policy that allows specified entities to assume this role
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              "AWS": "arn:aws:iam::867344433517:user/terraform-user"  # Allow this user from Deployment account to assume the role
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AdministratorAccess      # Attach arn of AdministratorAccess managed policy
+      Description: IAM Role for my terraform devops operations
+      MaxSessionDuration: 3600 # Optional: maximum session duration in seconds

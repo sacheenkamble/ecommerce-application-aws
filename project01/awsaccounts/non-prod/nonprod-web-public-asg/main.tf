@@ -17,11 +17,11 @@ resource "aws_iam_instance_profile" "ec2InstanceProfile" {
 module "ec2-asg" {
   source = "../../../modules/asg"
 
-  key_name                  = var.key_name                                     # Replace with your actual key pair name                                # Path to your user data script
-  iam_instance_profile_name = aws_iam_instance_profile.ec2InstanceProfile.name # Replace with your actual IAM instance profile name
-  instance_type             = var.instance_type                                #t3.micro
-  subnet_ids                = data.aws_subnets.publicsubnets.ids               # List of subnet IDs from the non-prod VPC module
-  security_group_id         = data.aws_security_group.nonpprodvpc_sg.id        # Security Group ID from the non-prod security group module
+  key_name                  = var.key_name                                                                   # Replace with your actual key pair name                                # Path to your user data script
+  iam_instance_profile_name = aws_iam_instance_profile.ec2InstanceProfile.name                               # Replace with your actual IAM instance profile name
+  instance_type             = var.instance_type                                                              #t3.micro
+  subnet_ids                = data.aws_subnets.privatesubnets.ids # List of subnet IDs from the non-prod VPC module
+  security_group_id         = data.aws_security_group.nonpprodvpc_sg.id                                      # Security Group ID from the non-prod security group module
   desired_capacity          = 2
   max_size                  = 3
   min_size                  = 1

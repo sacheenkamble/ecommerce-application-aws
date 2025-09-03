@@ -2,20 +2,20 @@
 
 name: Terraform CI/CD
 
-on:
-     push:
-       branches:
-         - main
-       paths:
-          - "project01/awsaccounts/**"
+# on:
+#      push:
+#        branches:
+#          - main
+#        paths:
+#           - "project01/awsaccounts/**"
 
-     pull_request:
-       branches:
-         - main   #Target 'main' branch for PRs
-       paths:
-          - "project01/awsaccounts/**"
-       types:
-          - closed   # To run checks on PR close (for merge)
+#      pull_request:
+#        branches:
+#          - main   #Target 'main' branch for PRs
+#        paths:
+#           - "project01/awsaccounts/**"
+#        types:
+#           - closed   # To run checks on PR close (for merge)
 
      workflow_dispatch:   ## When this workflow is manually triggered
 

@@ -31,7 +31,7 @@ variable "kms_key_name" {
 variable "tags" {
   description = "A map of tags to assign to the resource"
   type        = map(string)
-  default     = {
+  default = {
     Environment = "Non-Production"
     Project     = "Ecommerce Application"
     Owner       = "DevOps Team"
