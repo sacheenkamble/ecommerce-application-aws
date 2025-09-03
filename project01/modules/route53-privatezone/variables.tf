@@ -13,3 +13,10 @@ variable "tags" {
     Owner       = "DevOps Team"
   }
 }
+
+# Define variable for private zone name
+variable "private_zone_name" {
+  description = "The name of the private hosted zone"
+  type        = string
+  default     = "blissandbake.internal"
+}
