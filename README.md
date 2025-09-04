@@ -1,2 +1,2 @@
 # ecommerce-application-aws
-E-commerce website hosted in AWS platform
+Test E-commerce website hosted in AWS platform
