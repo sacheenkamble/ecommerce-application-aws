@@ -19,8 +19,9 @@ on:
 ## Allow this workflow to read all contents in this Git repo
 permissions:
    #id-token: write
-   contents: read
+   contents: read                  # Required to checkout code
    actions: read
+   pull-requests: write            # To write comments to Pull Requests.
 
 jobs:
    terraform:
@@ -36,7 +37,7 @@ jobs:
 
      steps:
        - name: Checkout GitHub repository
-         uses: actions/checkout@v4
+         uses: actions/checkout@v4                           # Checkout to get repository contents onto workflow runner
 
        - name: Configure AWS credentials
          uses: aws-actions/configure-aws-credentials@v4
@@ -45,7 +46,7 @@ jobs:
            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            aws-region: ${{ env.AWS_REGION }}
 
-       - name: Set up Terraform
+       - name: Install and configure Terraform on the runner.
          uses: hashicorp/setup-terraform@v1
          with:
            terraform_version: ${{ env.TF_VERSION }}
@@ -85,10 +86,12 @@ jobs:
 
        - name: Terraform plan
          id: plan
-         run: terraform plan -no-color
+         run: |
+             terraform plan -input=false -no-color > tfplan.txt
+             echo "plan_output<<EOF" >> $GITHUB_OUTPUT
+             cat tfplan.txt >> $GITHUB_OUTPUT
+             echo "EOF" >> $GITHUB_OUTPUT
          #working-directory: ${{env.WORKING_DIR}}
-           # env:
-           #   TF_VAR_assume_role: "my-github-actions-role"
 
        - name: TFLint
          run: |
