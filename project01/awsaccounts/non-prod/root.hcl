@@ -1,5 +1,5 @@
 
-# Define AWS Provider versions
+# Use Generate block to generate Terraform and AWS Provider versions
 generate "version" {
   path = "version.tf"
   if_exists = "overwrite_terragrunt"
@@ -28,10 +28,11 @@ provider "aws" {
 EOF
 }
 
-#Define S3 Backend using Terragrunt remote_state block
+#Use Generate block to generate S3 Backend using Terragrunt
 generate "backend" {
   path      = "backend.tf"
   if_exists = "overwrite_terragrunt"
+
   contents = <<EOF
 terraform {
   backend "s3" {
