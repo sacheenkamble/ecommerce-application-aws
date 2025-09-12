@@ -94,9 +94,9 @@ jobs:
          continue-on-error: true
 
 
-       - name: Terraform init -backend-config="key=${{ env.S3_BACKEND_KEY }}"
+       - name: Initialize Terraform
          id: init
-         run: terraform init
+         run: terraform init -backend-config="key=${{ env.S3_BACKEND_KEY }}"
          working-directory: ${{env.WORKING_DIR}}
         # env:
         #   TF_CLI_ARGS_init: "-backend-config=role_arn=arn:aws:iam::99999999:role/my-github-actions-role -upgrade -reconfigure"
