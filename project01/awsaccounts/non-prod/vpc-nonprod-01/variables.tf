@@ -45,7 +45,7 @@ variable "environment" {
 variable "project" {
   type        = string
   description = "Project tag for resources"
-  default     = "ecommerce01"
+  default     = "nonprod_ecommerce"
 }
 //////////////////////////////////////////////////////////////////////////////
 #/Define variables for VPC Security Group module /////////////////////////////
