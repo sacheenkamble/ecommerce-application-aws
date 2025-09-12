@@ -1,11 +1,11 @@
 name: Terraform CI/CD
 # Controls when the workflow will run
 on:
-      push:                                      # When code is pushed to the main branch
-        branches:
-            - main
-        paths:
-            - project01/awsaccounts/**       # Terraform files path to monitor in main branch
+      # push:                                      # When code is pushed to the main branch
+      #   branches:
+      #       - main
+      #   paths:
+      #       - project01/awsaccounts/**       # Terraform files path to monitor in main branch
 
       pull_request:
         branches:
@@ -14,6 +14,8 @@ on:
           - project01/awsaccounts/**       # Terraform files path to monitor in PRs to main branch
         types:
           - closed                               # To run checks on PR close (for merge)  # When PR is closed (merged)
+
+          
 
       workflow_dispatch:                         # When this workflow is manually triggered
          inputs:
