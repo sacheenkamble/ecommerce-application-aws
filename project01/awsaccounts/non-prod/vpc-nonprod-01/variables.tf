@@ -38,7 +38,7 @@ variable "vpc_cidr_01" {
 variable "environment" {
   type        = string
   description = "Environment tag for resources"
-  default     = "non-prod"
+  default     = "nonprod"
 }
 
 #Define Project tag
