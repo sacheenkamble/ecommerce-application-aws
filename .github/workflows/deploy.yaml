@@ -7,13 +7,13 @@ on:
         paths:
             - project01/awsaccounts/**       # Terraform files path to monitor in main branch
 
-#       pull_request:
-#         branches:
-#           - main                                 # When PR raised for Target 'main' branch
-#         paths:
-#           - project01/awsaccounts/**       # Terraform files path to monitor in PRs to main branch
-#         types:
-#           - closed                               # To run checks on PR close (for merge)  # When PR is closed (merged)
+      pull_request:
+        branches:
+          - main                                 # When PR raised for Target 'main' branch
+        paths:
+          - project01/awsaccounts/**       # Terraform files path to monitor in PRs to main branch
+        types:
+          - closed                               # To run checks on PR close (for merge)  # When PR is closed (merged)
 
       workflow_dispatch:                         # When this workflow is manually triggered
          inputs:
