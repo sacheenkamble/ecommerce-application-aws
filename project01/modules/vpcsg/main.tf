@@ -10,7 +10,7 @@ resource "aws_security_group" "allow_tls" {
 
   # Ensure the security group is created to avoid dependency errors
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy = false
   }
 
   # Set a timeout for deletion to handle potential delays
