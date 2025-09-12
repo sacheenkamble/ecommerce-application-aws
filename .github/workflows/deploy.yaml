@@ -28,16 +28,17 @@ on:
                type: string
                required: false
 
-      workflow_call:
-         inputs:
-            target_directory:
-               description: "Target directory for terraform operations"
-               type: string
-               required: true
-            s3_backend_key:
-               description: "S3 backend path to store statefile"
-               type: string
-               required: false
+     # #Trigger when this workflow is called-in by another workflow specifying values for below user inputs
+     #  workflow_call:
+     #     inputs:
+     #        target_directory:
+     #           description: "Target directory for terraform operations"
+     #           type: string
+     #           required: true
+     #        s3_backend_key:
+     #           description: "S3 backend path to store statefile"
+     #           type: string
+     #           required: false
  
 
 ## Allow this workflow to read all contents in this Git repo
