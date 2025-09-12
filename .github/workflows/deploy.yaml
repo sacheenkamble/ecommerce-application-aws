@@ -21,6 +21,10 @@ on:
                description: "Target directory for terraform operations"
                type: string
                required: true
+            s3_backend_key:
+               description: "S3 backend path to store statefile"
+               type: string
+               required: false
 
       workflow_call:
          inputs:
@@ -28,7 +32,10 @@ on:
                description: "Target directory for terraform operations"
                type: string
                required: true
-      
+            s3_backend_key:
+               description: "S3 backend path to store statefile"
+               type: string
+               required: false
  
 
 ## Allow this workflow to read all contents in this Git repo
@@ -45,6 +52,7 @@ jobs:
     
      env:
       WORKING_DIR: ${{ github.event.inputs.target_directory }}  #Adjust path as necessary
+      S3_BACKEND_KEY: ${{ inputs.s3_backend_key }}  ## S3 backend path for state-file
       AWS_REGION: us-east-1
       TF_VERSION: 1.13.0
       TFLINT_VERSION: 0.46.1  # Updated to a more recent version
@@ -86,7 +94,7 @@ jobs:
          continue-on-error: true
 
 
-       - name: Terraform init
+       - name: Terraform init -backend-config="key=${{ env.S3_BACKEND_KEY }}"
          id: init
          run: terraform init
          working-directory: ${{env.WORKING_DIR}}
